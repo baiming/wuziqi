@@ -1,0 +1,77 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BORD	mouse_op.c	5;"	d	file:
+BUFFER_SIZE	main.h	23;"	d
+BUFFER_SIZE	server.c	22;"	d	file:
+C_HEIGHT	mouse_op.c	3;"	d	file:
+C_WIDTH	mouse_op.c	2;"	d	file:
+P_NUM	main.h	22;"	d
+SERVER_PORT	server.c	21;"	d	file:
+SPACE	mouse_op.c	8;"	d	file:
+SPACE	print_board.c	4;"	d	file:
+STARTING_X	mouse_op.c	9;"	d	file:
+STARTING_X	print_board.c	2;"	d	file:
+STARTING_Y	mouse_op.c	10;"	d	file:
+STARTING_Y	print_board.c	3;"	d	file:
+T__	mouse_op.c	4;"	d	file:
+V_NUM	main.h	21;"	d
+X__	mouse_op.c	6;"	d	file:
+_MAIN_H	main.h	3;"	d
+board	mouse_op.c	/^char board[V_NUM*P_NUM];$/;"	v
+bpp	main.h	/^    int bpp;$/;"	m	struct:__anon2
+buffer	server.c	/^char buffer[BUFFER_SIZE];$/;"	v
+button	main.h	/^    int button;$/;"	m	struct:__anon1
+check_all	mouse_op.c	/^int check_all(void)$/;"	f
+check_five	mouse_op.c	/^int check_five(int x, int y)$/;"	f
+chess_count	mouse_op.c	/^int chess_count(int x, int y,int w)$/;"	f
+client	server.c	/^struct sockaddr_in server,client;$/;"	v	typeref:struct:
+client_len	server.c	/^socklen_t client_len;$/;"	v
+color_choice	mouse_op.c	/^u32_t color_choice;$/;"	v
+create_scr_fb	create_scr_fb.c	/^void create_scr_fb(void)$/;"	f
+cursor_pixel	mouse_op.c	/^    static u32_t cursor_pixel[C_WIDTH *C_HEIGHT]={$/;"	v	file:
+dest	main.h	/^char dest; $/;"	m	struct:__anon3
+draw_cursor	mouse_op.c	/^int draw_cursor(int x, int y)$/;"	f
+dx	main.h	/^    int dx;$/;"	m	struct:__anon1
+dy	main.h	/^    int dy;$/;"	m	struct:__anon1
+dz	main.h	/^    int dz;$/;"	m	struct:__anon1
+fb_circle	basic_shape.c	/^int fb_circle(int x0, int y0, int r, u32_t color)    \/\/  hua yuan$/;"	f
+fb_line	basic_shape.c	/^int fb_line (int x1, int y1,int x2, int y2, u32_t color)    \/\/hua xian$/;"	f
+fb_mem	main.h	/^    void *fb_mem;$/;"	m	struct:__anon2
+fb_one_pixel	fb_one_pixel.c	/^int fb_one_pixel(int x,int y,u32_t color)$/;"	f
+fb_v	main.h	/^v_info_t fb_v;$/;"	v
+get_m_info	mouse_op.c	/^int get_m_info(int fd,m_event *event)$/;"	f
+h	main.h	/^    int h;$/;"	m	struct:__anon2
+in	server.c	/^struct in_addr in;$/;"	v	typeref:struct:in_addr
+len	main.h	/^char len;$/;"	m	struct:__anon3
+m_event	main.h	/^}m_event;$/;"	t	typeref:struct:__anon1
+main	server.c	/^int main(int argc, char *argv[])$/;"	f
+mevent	main.h	/^m_event mevent;$/;"	v
+mouse_doing	mouse_op.c	/^int mouse_doing(void)                \/\/ zheng chang hua qi zi (dan  ji)$/;"	f
+mouse_doing1	mouse_op.c	/^int mouse_doing1(void)\/\/(int x,int y)             \/\/wang luo  hua qi zi  (zuo wei fu wu qi)$/;"	f
+msg_t	main.h	/^int y;}msg_t;$/;"	t	typeref:struct:__anon3
+para	Makefile	/^para = -Wall$/;"	m
+pp	server.c	/^msg_t *pp = (msg_t *)buffer;$/;"	v
+print_board	print_board.c	/^void print_board(void)  \/\/ge zi$/;"	f
+print_one1_chess	print_board.c	/^int print_one1_chess (int k1,int k2)$/;"	f
+print_one_chess	print_board.c	/^int print_one_chess (int mx,int my,int q)$/;"	f
+restore_shape	mouse_op.c	/^int restore_shape(int x, int y)$/;"	f
+save_shape	mouse_op.c	/^int save_shape(int x, int y)$/;"	f
+scr	Makefile	/^scr = basic_shape.c mouse_op.c print_board.c create_scr_fb.c fb_one_pixel.c server.c$/;"	m
+server	server.c	/^struct sockaddr_in server,client;$/;"	v	typeref:struct:sockaddr_in
+server_sock	server.c	/^int server_sock;$/;"	v
+shape_save	mouse_op.c	/^static u32_t shape_save[C_WIDTH*C_HEIGHT];$/;"	v	file:
+source	main.h	/^char source;$/;"	m	struct:__anon3
+swap	basic_shape.c	/^void swap(int *a, int*b)$/;"	f
+type	main.h	/^char type;$/;"	m	struct:__anon3
+u32_t	main.h	/^typedef unsigned int u32_t;$/;"	t
+u8_t	main.h	/^typedef unsigned char u8_t;$/;"	t
+v_info_t	main.h	/^}v_info_t;$/;"	t	typeref:struct:__anon2
+w	main.h	/^    int w;$/;"	m	struct:__anon2
+w	mouse_op.c	/^char w = 1 ;$/;"	v
+w	print_board.c	/^ char w;$/;"	v
+x	main.h	/^int x;$/;"	m	struct:__anon3
+y	main.h	/^int y;}msg_t;$/;"	m	struct:__anon3

@@ -32,7 +32,6 @@ static u32_t shape_save[C_WIDTH*C_HEIGHT];
 u32_t color_choice;
 char w = 1 ;
 char board[V_NUM*P_NUM];
-
 /*int choose_color(int x ,int y)
 {
     if((x>=20) && (x>=60))
@@ -280,34 +279,43 @@ int mouse_doing(void)                // zheng chang hua qi zi (dan  ji)
     return kkk;
 }
 
-int mouse_doing1(int x,int y)             //wang luo  hua qi zi  (zuo wei fu wu qi)
+
+
+
+int mouse_doing1(void)             //wang luo  hua qi zi  (zuo wei ke hu duan)
 {
-    printf("%d\n",x);
-    printf("%d\n",y);
     m_event mevent;
+	int len;
+    int x,y;
     int kkk;
     int a;
     int p = 0;
     int fd;
     int k1,k2;
-    k1=x*30+100;
-    k2=y*30+40;
-                         w= print_one1_chess(k1,k2);
-                         p++;
-                         save_shape(k1 ,k2);
-                         chess_count(k1,k2,w);
-                         a = check_all();
     int mx = 512;
     int my = 384;
-    fd = open("/dev/input/mice",O_RDWR|O_NONBLOCK);
+    int aaaa,bbb=0;
+    fd_set input_fd;
+    fd = open("/dev/input/mice",O_RDWR);
     if(fd < 0)
     {
         perror("open");
         exit(1);
     }
     draw_cursor(mx, my);
+    aaaa = fd > server_sock ? fd : server_sock;
     while(1)
     {
+        FD_ZERO(&input_fd);
+        FD_SET(fd,&input_fd);
+        FD_SET(client_sock,&input_fd);
+        if((select(aaaa+1,&input_fd,NULL,NULL,NULL)) < 0)
+        {
+            perror("select");
+            continue;
+        }
+        if(FD_ISSET(fd,&input_fd))
+        {
         if(get_m_info(fd, &mevent) > 0)
         {
             restore_shape(mx ,my);
@@ -327,26 +335,26 @@ int mouse_doing1(int x,int y)             //wang luo  hua qi zi  (zuo wei fu wu 
                 my = (fb_v.h-C_HEIGHT);
             
             }
-            switch(mevent.button)
+            if(p%2 == 0)
             {
-                case 1 :
-
-                         w= print_one_chess(mx,my,p);
-                         save_shape(mx ,my);
-                         chess_count(mx,my,w);
-                         a = check_all();
-                         if(a == 1)
-                         break;
-                         p++;
-                         
-	                  	 sendto(server_sock, buffer, BUFFER_SIZE, 0, (struct sockaddr *)&client, client_len);
-                         break;
-                case 2 : break;
-                case 4 : break;
-                default: break;
+                switch(mevent.button)
+                {
+                    case 1 :
+                             w= print_one_chess(mx,my,p);
+                             save_shape(mx ,my);
+                             chess_count(mx,my,w);
+                             a = check_all();
+                             p++;
+                             server_len=sizeof(server);
+	                  	     bbb = sendto(client_sock, buffer, BUFFER_SIZE, 0, (struct sockaddr *)&server, server_len);
+                             break;
+                    case 2 : break;
+                    case 4 : break;
+                    default: break;
             
+                }
             }
-            if(a != 1)
+//            if(a != 1)
             draw_cursor(mx ,my);
             if(a == 1)
             {
@@ -358,14 +366,42 @@ int mouse_doing1(int x,int y)             //wang luo  hua qi zi  (zuo wei fu wu 
         }
         usleep(1000);
         if(kkk == 1) close(fd);  
-        if(p%2 == 0) 
-        {
-            restore_shape(mx,my);
-            break;
-        }       
+    }
+    if(FD_ISSET(client_sock,&input_fd))
+    {
+    
+        printf("dsads\n");
+        restore_shape(mx,my);
+        server_len = sizeof(server);
+        len = recvfrom(client_sock, buffer, BUFFER_SIZE, 0, (struct sockaddr *)&server, &server_len);
+        printf("%d\n",len);
+		if (len < 0)
+		{
+			close(server_sock);
+			fprintf(stderr, "%s\n", strerror(errno));
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			printf("recvfrom client ok!\n");
+			printf("\n");
+            x= pp->x ;
+            y= pp->y ;
+            printf("%d\n",pp->x);
+            printf("%d\n",y);
+            k1=x*30+100;
+            k2=y*30+40;
+            w= print_one1_chess(k1,k2);
+            p++;
+            chess_count(k1,k2,w);
+            a = check_all();
+		}
+    }
     }
     return 0;
 }
+
+
 
 
 

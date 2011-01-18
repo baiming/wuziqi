@@ -33,26 +33,6 @@ u32_t color_choice;
 char w = 1 ;
 char board[V_NUM*P_NUM];
 
-/*int choose_color(int x ,int y)
-{
-    if((x>=20) && (x>=60))
-    {
-        if((y>=40) && (y<=80))
-        {
-            color_choice = 0x000000ff;
-            who = 1;
-        }
-        else if((y>=120) && (y<=160))
-        {
-            color_choice = 0x00ff0000;
-            who = 2;
-        }
-    
-    }
-
-    return 0;
-}*/
-
 int save_shape(int x, int y)
 {
     int i = 0;
@@ -333,24 +313,24 @@ int mouse_doing1(void)//(int x,int y)             //wang luo  hua qi zi  (zuo we
                 my = (fb_v.h-C_HEIGHT);
             
             }
-            switch(mevent.button)
+            if(p%2 == 1)
             {
-                case 1 :
+                switch(mevent.button)
+                {
+                    case 1 :
 
-                         w= print_one_chess(mx,my,p);
-                         save_shape(mx ,my);
-                         chess_count(mx,my,w);
-                         a = check_all();
-                         //if(a == 1)
-                             //break;
-                         p++;
-                         
-	                  	 sendto(server_sock, buffer, BUFFER_SIZE, 0, (struct sockaddr *)&client, client_len);
-                         break;
-                case 2 : break;
-                case 4 : break;
-                default: break;
+                             w= print_one_chess(mx,my,p);
+                             save_shape(mx ,my);
+                             chess_count(mx,my,w);
+                             a = check_all();
+                             p++;
+	                  	     sendto(server_sock, buffer, BUFFER_SIZE, 0, (struct sockaddr *)&client, client_len);
+                             break;
+                    case 2 : break;
+                    case 4 : break;
+                    default: break;
             
+                }
             }
 //            if(a != 1)
             draw_cursor(mx ,my);
@@ -370,7 +350,6 @@ int mouse_doing1(void)//(int x,int y)             //wang luo  hua qi zi  (zuo we
     
         printf("dsads\n");
         restore_shape(mx,my);
-		// wait for client request
 		client_len = sizeof(client);
         printf("sdfsdf\n");
 		len = recvfrom(server_sock, buffer, BUFFER_SIZE, 0, (struct sockaddr *)&client, &client_len);
@@ -392,12 +371,12 @@ int mouse_doing1(void)//(int x,int y)             //wang luo  hua qi zi  (zuo we
             y= pp->y ;
             printf("%d\n",pp->x);
             printf("%d\n",y);
-    k1=x*30+100;
-    k2=y*30+40;
-                         w= print_one1_chess(k1,k2);
-                         p++;
-                         chess_count(k1,k2,w);
-                         a = check_all();
+            k1=x*30+100;
+            k2=y*30+40;
+            w= print_one1_chess(k1,k2);
+            p++;
+            chess_count(k1,k2,w);
+            a = check_all();
 		}
     }
     }

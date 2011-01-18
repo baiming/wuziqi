@@ -13,11 +13,11 @@
 #include <sys/mman.h>
 #include <errno.h>
 #include <unistd.h>
+#include <sys/select.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <sys/select.h>
 #define    V_NUM 30
 #define    P_NUM 24
 #define BUFFER_SIZE		12
@@ -48,7 +48,12 @@ char len;
 int x;
 int y;}msg_t;
 
+/*extern    int client;*/
+/*extern    int client_len;*/
+extern	int len;
+extern	int client_sock;
 extern char buffer[BUFFER_SIZE];
+extern socklen_t server_len;
 extern  socklen_t client_len;
 extern	int server_sock;
 extern	struct sockaddr_in server,client;
@@ -56,7 +61,7 @@ extern	struct in_addr in;
 extern  msg_t *pp;
 extern int print_one1_chess (int mx,int my);
 extern void create_scr_fb(void);
-extern int mouse_doing1(int x,int y);
+extern int mouse_doing1(void);
 extern int fb_one_pixel(int x,int y,u32_t color);
 extern int fb_line(int x1,int y1,int x2,int y2,u32_t color);
 extern void circle(int centerx, int centery, int radius, int color, int type);

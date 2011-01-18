@@ -26,8 +26,8 @@ int print_one_chess (int mx,int my,int q)
                             
                         mx=x;
                         my=y;
-                        pp->x = (mx - 100)/30;
-                        pp->y = (my - 40)/30;
+                        pp->x=(mx - 100)/30 ;
+                        pp ->y=(my - 40)/30 ;
                         if(q%2==0)
                         {
                             fb_circle(mx,my,13,0x00ffffff);
@@ -36,6 +36,8 @@ int print_one_chess (int mx,int my,int q)
                         {
                             fb_circle(mx,my,13,0x00000000);
                         }
+                        //pp -> x =(mx - 100)/30;
+                        //pp -> y =(my - 40)/30;
                         break;
                     } 
                  }
@@ -49,19 +51,8 @@ int print_one_chess (int mx,int my,int q)
 }  
 int print_one1_chess (int k1,int k2)
 {
-    //if(q%2==0)
-    //{
-    //circle(a, b,h,0x00ffffff, 0);
-                            
-                            fb_circle(k1,k2,13,0x00ffffff);
-    //} 
-   //if(q%2==1)
-   //{
-   //fb_one_pixel(a,b,0x000000ff);
-            
-   //fb_circle(k1,k2,13,0x00000000);
-   //}
-            return 0;  
+    fb_circle(k1,k2,13,0x00000000);
+    return 0;  
 
 }  
 

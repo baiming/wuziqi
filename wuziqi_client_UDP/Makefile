@@ -1,4 +1,4 @@
-scr = basic_shape.c mouse_op.c print_board.c create_scr_fb.c fb_one_pixel.c server.c
+scr = basic_shape.c mouse_op.c print_board.c create_scr_fb.c fb_one_pixel.c client.c
 para = -Wall
 
 main:$(scr)
